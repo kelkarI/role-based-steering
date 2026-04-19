@@ -1,0 +1,18 @@
+{
+  "method": "Official assistant_axis + default_vector + role_vectors taken from lu-christina/assistant-axis-vectors/qwen-3-32b at target_layer=32 (as configured in assistant_axis.models.MODEL_CONFIGS). role direction = role_vector[L] - default_vector[L], unit-normalised. assistant_axis = axis[L], unit-normalised.",
+  "source_hf_dataset": "lu-christina/assistant-axis-vectors",
+  "source_subdir": "qwen-3-32b",
+  "target_layer": 32,
+  "model": "Qwen/Qwen3-32B",
+  "roles": [
+    "devils_advocate",
+    "contrarian",
+    "skeptic",
+    "judge",
+    "scientist",
+    "peacekeeper",
+    "pacifist",
+    "collaborator",
+    "facilitator"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "method": "CAA (Rimsky et al. 2024)",
+  "training_datasets": [
+    "sycophancy_on_nlp_survey.jsonl",
+    "sycophancy_on_political_typology_quiz.jsonl"
+  ],
+  "n_pairs": 2000,
+  "n_per_dataset_cap": 1000,
+  "subsample_seed": 2024,
+  "target_layer": 32,
+  "raw_norm": 6.382212162017822,
+  "direction": "FROM honest TOWARD sycophantic (steer with NEGATIVE coeff to reduce syc)"
+}

@@ -1,0 +1,36 @@
+{
+  "source_split": "test",
+  "locked_from": "/lambda/nfs/filesystem/sycophancy-final/experiment-main/results/best_coefs_tune.json",
+  "best_coefs": {
+    "assistant_axis": 2000.0,
+    "devils_advocate": 2000.0,
+    "contrarian": 1000.0,
+    "skeptic": 2000.0,
+    "judge": 2000.0,
+    "scientist": 2000.0,
+    "peacekeeper": 5000.0,
+    "pacifist": 2000.0,
+    "collaborator": 500.0,
+    "facilitator": -5000.0,
+    "caa": -2000.0,
+    "skeptic_residual": 2000.0,
+    "contrarian_residual": 2000.0,
+    "collaborator_residual": 5000.0
+  },
+  "selector_direction": {
+    "assistant_axis": "decrease",
+    "devils_advocate": "decrease",
+    "contrarian": "decrease",
+    "skeptic": "decrease",
+    "judge": "decrease",
+    "scientist": "decrease",
+    "peacekeeper": "increase",
+    "pacifist": "increase",
+    "collaborator": "increase",
+    "facilitator": "increase",
+    "caa": "decrease",
+    "skeptic_residual": "decrease",
+    "contrarian_residual": "decrease",
+    "collaborator_residual": "decrease"
+  }
+}

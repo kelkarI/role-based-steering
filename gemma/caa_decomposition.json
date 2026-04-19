@@ -1,0 +1,52 @@
+{
+  "assistant_axis": {
+    "cosine_with_caa": -0.08600328862667084,
+    "caa_component_norm": 0.08600326627492905,
+    "residual_norm": 0.9962955117225647
+  },
+  "devils_advocate": {
+    "cosine_with_caa": 0.003016835078597069,
+    "caa_component_norm": 0.0030168346129357815,
+    "residual_norm": 0.9999953508377075
+  },
+  "contrarian": {
+    "cosine_with_caa": 0.032646119594573975,
+    "caa_component_norm": 0.03264611214399338,
+    "residual_norm": 0.9994669556617737
+  },
+  "skeptic": {
+    "cosine_with_caa": 0.0640062540769577,
+    "caa_component_norm": 0.06400623917579651,
+    "residual_norm": 0.9979497194290161
+  },
+  "judge": {
+    "cosine_with_caa": 0.08541703969240189,
+    "caa_component_norm": 0.08541703224182129,
+    "residual_norm": 0.9963456988334656
+  },
+  "scientist": {
+    "cosine_with_caa": 0.004034317098557949,
+    "caa_component_norm": 0.004034316632896662,
+    "residual_norm": 0.9999919533729553
+  },
+  "peacekeeper": {
+    "cosine_with_caa": 0.06511015444993973,
+    "caa_component_norm": 0.06511013209819794,
+    "residual_norm": 0.9978785514831543
+  },
+  "pacifist": {
+    "cosine_with_caa": 0.07565366476774216,
+    "caa_component_norm": 0.07565364241600037,
+    "residual_norm": 0.9971344470977783
+  },
+  "collaborator": {
+    "cosine_with_caa": 0.16481372714042664,
+    "caa_component_norm": 0.16481366753578186,
+    "residual_norm": 0.986325204372406
+  },
+  "facilitator": {
+    "cosine_with_caa": 0.14594495296478271,
+    "caa_component_norm": 0.14594492316246033,
+    "residual_norm": 0.9892930388450623
+  }
+}

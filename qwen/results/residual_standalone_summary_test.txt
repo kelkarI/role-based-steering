@@ -1,0 +1,34 @@
+=== Standalone CAA-orthogonal residual conditions ===
+Split: test    Baseline logit: +3.024    Baseline rate: 83.7%
+Parent-role tune coefficients read from: /lambda/nfs/filesystem/sycophancy-qwen/results/best_coefs_tune.json
+
+--- Skeptic ⊥ CAA (|cos(skeptic, CAA)| = 0.1049) ---
+  best coef (tune-locked, test): +200    parent (skeptic) best coef: +200    same
+  delta logit (vs baseline): -1.749  [-2.048, -1.441]
+  delta rate (pp)          : -14.7  [-19.7, -9.3]
+  Wilcoxon (less): p_raw = < 1e-15  p_holm (24-condition family) = < 1e-15  *sig*
+
+--- Contrarian ⊥ CAA (|cos(contrarian, CAA)| = 0.0705) ---
+  best coef (tune-locked, test): -100    parent (contrarian) best coef: -100    same
+  delta logit (vs baseline): -1.684  [-1.919, -1.442]
+  delta rate (pp)          : -11.0  [-15.7, -6.0]
+  Wilcoxon (less): p_raw = < 1e-15  p_holm (24-condition family) = < 1e-15  *sig*
+
+--- Devil's Advocate ⊥ CAA (|cos(devils_advocate, CAA)| = 0.1078) ---
+  best coef (tune-locked, test): +200    parent (devils_advocate) best coef: +200    same
+  delta logit (vs baseline): -2.130  [-2.442, -1.826]
+  delta rate (pp)          : -13.3  [-18.7, -8.0]
+  Wilcoxon (less): p_raw = < 1e-15  p_holm (24-condition family) = < 1e-15  *sig*
+
+--- Pattern check vs matched-coefficient decomposition finding ---
+Claim under test: low-|cos(role,CAA)| residuals reduce sycophancy; high-|cos(role,CAA)| residual does not.
+
+Low-cosine residuals (contrarian, skeptic):
+  contrarian_residual: delta_logit=-1.684 [-1.919, -1.442]  p_holm=6.57068917964229e-19  reduces=yes
+  skeptic_residual: delta_logit=-1.749 [-2.048, -1.441]  p_holm=2.3616435885498267e-16  reduces=yes
+
+High-cosine residual (devils_advocate):
+  devils_advocate_residual: delta_logit=-2.130 [-2.442, -1.826]  p_holm=3.419731814579329e-18  reduces=yes
+
+Verdict: PATTERN DOES NOT HOLD
+  (low_all_reduce=True  high_any_reduce=True)

@@ -1,0 +1,178 @@
+{
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "split": "test",
+  "per_condition": {
+    "assistant_axis": {
+      "mean_logit": 0.589861114025116,
+      "std_logit": 0.06724279854546754,
+      "logits_per_seed": [
+        0.5177083532015483,
+        0.679583326180776,
+        0.5722916626930237
+      ],
+      "mean_p_adjusted": 1.4911175286377057e-19,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "caa": {
+      "mean_logit": 1.0347916585538124,
+      "std_logit": 0.03431749923414706,
+      "logits_per_seed": [
+        0.994999992052714,
+        1.0787499851981799,
+        1.030624998410543
+      ],
+      "mean_p_adjusted": 2.0606738098715965e-14,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "collaborator": {
+      "mean_logit": 2.9704861124356587,
+      "std_logit": 0.12493149704299143,
+      "logits_per_seed": [
+        2.8114583539962767,
+        3.1166666809717816,
+        2.983333302338918
+      ],
+      "mean_p_adjusted": 1.0,
+      "n_significant": 0,
+      "n_seeds": 3
+    },
+    "contrarian": {
+      "mean_logit": 0.7252083333333333,
+      "std_logit": 0.057610356061781165,
+      "logits_per_seed": [
+        0.6683333222071329,
+        0.8041666714350383,
+        0.7031250063578288
+      ],
+      "mean_p_adjusted": 5.142522018213203e-18,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "contrarian_residual": {
+      "mean_logit": 1.353055555290646,
+      "std_logit": 0.10044595709228653,
+      "logits_per_seed": [
+        1.2370833365122478,
+        1.482083334128062,
+        1.3399999952316284
+      ],
+      "mean_p_adjusted": 8.074124963614926e-18,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "devils_advocate": {
+      "mean_logit": 0.727777783340878,
+      "std_logit": 0.05811823619106153,
+      "logits_per_seed": [
+        0.7135416805744171,
+        0.6647916686534882,
+        0.8050000007947286
+      ],
+      "mean_p_adjusted": 8.69248224742878e-18,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "devils_advocate_residual": {
+      "mean_logit": 0.8070138907432556,
+      "std_logit": 0.0621984234311042,
+      "logits_per_seed": [
+        0.7704166682561239,
+        0.7560416690508525,
+        0.8945833349227905
+      ],
+      "mean_p_adjusted": 5.710756070509327e-18,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "facilitator": {
+      "mean_logit": 2.5312500000662275,
+      "std_logit": 0.19941153034269063,
+      "logits_per_seed": [
+        2.2504166718324026,
+        2.693958343466123,
+        2.6493749849001564
+      ],
+      "mean_p_adjusted": 1.0,
+      "n_significant": 0,
+      "n_seeds": 3
+    },
+    "judge": {
+      "mean_logit": 1.30097222076522,
+      "std_logit": 0.07637669076206977,
+      "logits_per_seed": [
+        1.2072916797796884,
+        1.3943749817212423,
+        1.3012500007947285
+      ],
+      "mean_p_adjusted": 1.1165514688708788e-15,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "pacifist": {
+      "mean_logit": 0.02126736111111111,
+      "std_logit": 0.006752021587990618,
+      "logits_per_seed": [
+        0.025989583333333333,
+        0.01171875,
+        0.02609375
+      ],
+      "mean_p_adjusted": 1.0,
+      "n_significant": 0,
+      "n_seeds": 3
+    },
+    "peacekeeper": {
+      "mean_logit": 2.290763895776537,
+      "std_logit": 0.07709503236262606,
+      "logits_per_seed": [
+        2.236666664282481,
+        2.3997916746139527,
+        2.2358333484331765
+      ],
+      "mean_p_adjusted": 1.0,
+      "n_significant": 0,
+      "n_seeds": 3
+    },
+    "scientist": {
+      "mean_logit": 2.016180541647805,
+      "std_logit": 0.13165264324577197,
+      "logits_per_seed": [
+        1.8845833047231038,
+        2.196041656732559,
+        1.9679166634877523
+      ],
+      "mean_p_adjusted": 1.96441130100036e-10,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "skeptic": {
+      "mean_logit": 1.1767361215750378,
+      "std_logit": 0.10937299432538689,
+      "logits_per_seed": [
+        1.0225000087420146,
+        1.2639583333333333,
+        1.243750022649765
+      ],
+      "mean_p_adjusted": 1.3104046314101484e-17,
+      "n_significant": 3,
+      "n_seeds": 3
+    },
+    "skeptic_residual": {
+      "mean_logit": 1.200833344856898,
+      "std_logit": 0.11247158120867566,
+      "logits_per_seed": [
+        1.0418750035762787,
+        1.2852083476384482,
+        1.2754166833559673
+      ],
+      "mean_p_adjusted": 8.161568993753184e-17,
+      "n_significant": 3,
+      "n_seeds": 3
+    }
+  }
+}

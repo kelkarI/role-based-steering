@@ -1,0 +1,27 @@
+{
+  "source_split": "tune",
+  "seeds": [
+    123,
+    42,
+    456,
+    7,
+    789
+  ],
+  "rule": "mode across seeds, tie-break by count then proximity to median",
+  "best_coefs": {
+    "assistant_axis": 200.0,
+    "devils_advocate": 200.0,
+    "contrarian": -200.0,
+    "skeptic": 200.0,
+    "judge": 200.0,
+    "scientist": -100.0,
+    "peacekeeper": -200.0,
+    "pacifist": 500.0,
+    "collaborator": -100.0,
+    "facilitator": -200.0,
+    "caa": -200.0,
+    "skeptic_residual": 200.0,
+    "contrarian_residual": -100.0,
+    "devils_advocate_residual": 200.0
+  }
+}

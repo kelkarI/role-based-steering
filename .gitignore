@@ -1,0 +1,16 @@
+# Per-row eval outputs are huge and rebuildable from the upstream repos
+# (kelkarI/sycophancy-final for Gemma, kelkarI/sycophancy-qwen for Qwen).
+**/all_results_*.json
+**/axis_projections_*.json
+**/checkpoints/
+**/checkpoints_decomposition/
+**/_last_seed_*_backup/
+
+# Raw steering vectors come from lu-christina/assistant-axis-vectors +
+# per-model CAA extraction; don't redistribute.
+**/vectors/steering/*.pt
+
+# HF cache
+**/.cache/
+**/__pycache__/
+*.pyc
