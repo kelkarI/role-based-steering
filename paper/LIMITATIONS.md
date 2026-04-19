@@ -51,6 +51,30 @@
    a narrow range; the "low vs high" distinction should be read as a
    *within-decomposition* ordering, not as a large geometric separation.
 
+6b. **The "high-cos" role is a real outlier on Gemma but only nominal on
+    Qwen.** On Gemma, |cos(role, CAA)| ranges from 0.003 (devils_advocate)
+    to **0.165 (collaborator)**. The gap between the top role and the
+    rest is wide: 0.165 vs the next-highest 0.146 (facilitator), and the
+    median role is ≈ 0.07. Collaborator is a genuine outlier in the
+    Gemma decomposition.
+
+    On Qwen, |cos(role, CAA)| ranges from 0.025 (collaborator!) to
+    **0.108 (devils_advocate)**. The top is barely separated from
+    second: 0.108 vs 0.105 (skeptic) — a 0.003 gap, inside any
+    reasonable noise floor. The Qwen "high-cos" role is a nominal
+    ordering, not a meaningful outlier.
+
+    Consequence: the high-cos-vs-low-cos residual contrast tested in
+    this paper is a **genuine geometric test on Gemma** and a
+    **nominal / tie-broken test on Qwen**. The Qwen result ("devils_advocate
+    residual is the *largest* reducer, not the smallest") is consistent
+    with the Gemma finding, but it should be framed as *the test cannot
+    distinguish high-cos from low-cos roles on Qwen because the roles
+    are not meaningfully separated in cosine space*. A stronger test on
+    Qwen would require either a role with cos ≥ 0.15 (none exists) or
+    a different contrast (e.g. generated/synthetic role with injected
+    CAA alignment).
+
 7. **The sign of cos(role, CAA) flips between models.** On Gemma most
    roles have nominally positive cosines; on Qwen most have nominally
    negative cosines. This sign determines the direction of the
@@ -64,17 +88,26 @@
 
 ## Conformist / bidirectionality
 
-8. **Qwen bidirectionality is dominated by a ceiling effect.** Qwen
-   baseline sycophancy is 84%; there is roughly 16 percentage points of
-   headroom for a conformist role to push the model *more* sycophantic
-   before hitting 100%. In practice the Qwen pipeline never produces a
-   significant increase in sycophancy from any conformist role across 3
-   test seeds; the direction-aware selector for conformist roles on Qwen
-   often lands at a saturation-edge coefficient (e.g. Pacifist at +500
-   drives the rate to exactly 50%, a degradation signature). The Qwen
-   data therefore does not provide a clean test of the bidirectionality
-   claim — only the Gemma data does, and there only one of four
-   conformist roles (Collaborator) reaches significance.
+8. **Qwen baseline ceiling dominates the bidirectionality test.**
+   Baseline binary sycophancy rate is **83.7% on Qwen (test)** vs
+   **59.3% on Gemma**; baseline syc logit is +3.00 (Qwen) vs +1.01
+   (Gemma). The "conformist roles increase sycophancy" direction has
+   only ~16 percentage points of headroom on Qwen before the rate hits
+   100%, and symmetrically only ~0.5 logit of headroom before the
+   softmax saturates. In practice the Qwen pipeline never produces a
+   Holm-significant increase in sycophancy from any conformist role in
+   any of 3 test seeds; the direction-aware selector for conformist
+   roles on Qwen often lands at a saturation-edge coefficient (e.g.
+   Pacifist at +500 drives the rate to exactly 50%, a degradation
+   signature — `results/degradation_flags_test.json`).
+
+   **Gemma is the cleaner bidirectionality measurement.** Its 59.3%
+   baseline leaves substantially more room for conformist directions
+   to raise sycophancy without saturating, and it is the only model
+   in which any conformist role (Collaborator, +3.3 pp rate,
+   p_holm=0.002) reaches significance. Any bidirectionality claim in
+   the paper should cite Gemma as the primary evidence, with Qwen
+   explicitly flagged as "ceiling-constrained, not a clean test".
 
 ## Scope and generalisation
 

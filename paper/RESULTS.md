@@ -95,10 +95,19 @@ coefficient, Holm across all 24 conditions:
 | Collaborator ⊥ CAA (Gemma high-cos) | G:0.165 | −0.93 [−1.13, −0.76] | <1e-15 ✱ | — | — |
 | Devil's Advocate ⊥ CAA (Qwen high-cos) | Q:0.108 | — | — | −2.19 ± 0.08 | 3/3 ✱ |
 
-All residuals that reach Holm significance reduce sycophancy; on Qwen
-the highest-\|cos\| residual (devils_advocate) produces the **largest**
-reduction of the three, and on Gemma the highest-\|cos\| residual
-(collaborator) also produces the largest reduction.
+2 of 3 Gemma residuals reach Holm significance. **Contrarian ⊥ CAA on
+Gemma is explicitly a null: raw Wilcoxon p=0.020, Holm-adjusted
+p=0.072** over 24 conditions on n=150 test bases (single seed). Its
+95% CI excludes zero at −0.32 [−0.55, −0.10] but the adjusted p does
+not pass α=0.05. All 3 Qwen residuals reach Holm significance in all 3
+test seeds.
+
+Where residuals *are* significant: on Qwen the highest-\|cos\| residual
+(devils_advocate) produces the largest reduction of the three; on
+Gemma the highest-\|cos\| residual (collaborator) also produces the
+largest reduction. See the high-cos-range caveat in LIMITATIONS §6b —
+on Qwen the three roles are barely separated in \|cos\| (top gap 0.003)
+so this ordering is a nominal one, not a geometric outlier contrast.
 
 ## 6. Finding 4 — "High-\|cos\| residual fails to reduce sycophancy" does NOT hold standalone
 

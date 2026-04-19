@@ -48,15 +48,20 @@ at the parent role's best coefficient. See
 residual its own tune-locked coefficient (not reusing the parent role's)
 and evaluating on held-out test with Holm across all 24 conditions:
 
-| Residual | Gemma Δ logit [95% CI] | Qwen mean Δ logit (3 seeds) |
+| Residual | Gemma Δ logit [95% CI], Holm p | Qwen mean Δ logit (3 seeds), Holm |
 |---|---|---|
-| Skeptic ⊥ CAA | −0.75 [−0.96, −0.57] ✱ | −1.80 ± 0.14 (3/3 ✱) |
-| Contrarian ⊥ CAA | −0.32 [−0.55, −0.10] ns | −1.65 ± 0.12 (3/3 ✱) |
-| Collaborator ⊥ CAA (Gemma's high-\|cos\| role) | −0.93 [−1.13, −0.76] ✱ | — |
-| Devil's Advocate ⊥ CAA (Qwen's high-\|cos\| role) | — | −2.19 ± 0.08 (3/3 ✱) |
+| Skeptic ⊥ CAA | −0.75 [−0.96, −0.57], p=3.6e-11 **✱** | −1.80 ± 0.14, **3/3 ✱** |
+| Contrarian ⊥ CAA | −0.32 [−0.55, −0.10], p=0.072 **ns (fails Holm)** | −1.65 ± 0.12, **3/3 ✱** |
+| Collaborator ⊥ CAA (Gemma's high-\|cos\| role) | −0.93 [−1.13, −0.76], p<1e-15 **✱** | — |
+| Devil's Advocate ⊥ CAA (Qwen's high-\|cos\| role) | — | −2.19 ± 0.08, **3/3 ✱** |
 
-On Gemma, 2 of 3 residuals reach Holm-corrected significance; on Qwen
-3 of 3 in every test seed.
+**On Gemma 2 of 3 standalone residuals survive Holm-Bonferroni across
+24 conditions; Contrarian ⊥ CAA does not (raw p=0.020, Holm-adjusted
+p=0.072 on n=150 test bases, single seed).** Its 95% CI excludes zero
+but the adjusted p does not. Reporting this as a null result is
+important; the Gemma write-up should not treat all three residuals as
+confirmed reducers. On Qwen all three are Holm-significant in every
+seed.
 
 **(4) The high-|cos(role, CAA)| residual does *not* fail to reduce
 sycophancy when given its own tune-locked coefficient.** This is the
