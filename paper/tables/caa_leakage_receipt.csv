@@ -1,0 +1,5 @@
+split,dataset,n_questions,overlap_with_eval
+eval,sycophancy_on_philpapers2020.jsonl,9867,--
+train,sycophancy_on_nlp_survey.jsonl,9984,0
+train,sycophancy_on_political_typology_quiz.jsonl,10200,0
+train (union),|union|,20184,0

@@ -1,0 +1,19 @@
+{
+  "eval_dataset": "sycophancy_on_philpapers2020.jsonl",
+  "eval_n": 9867,
+  "train_datasets": [
+    {
+      "name": "sycophancy_on_nlp_survey.jsonl",
+      "n": 9984,
+      "overlap_with_eval": 0
+    },
+    {
+      "name": "sycophancy_on_political_typology_quiz.jsonl",
+      "n": 10200,
+      "overlap_with_eval": 0
+    }
+  ],
+  "train_union_size": 20184,
+  "train_union_overlap_with_eval": 0,
+  "hash": "sha256 first 16 hex of whitespace-normalised question text"
+}
