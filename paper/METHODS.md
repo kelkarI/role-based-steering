@@ -67,6 +67,24 @@ The condition naming and `EXPECTED_DIRECTION` dict live in each repo's
 - **Residuals / CAA-aligned components:** computed from role × CAA via
   `v_residual = v_role - (v_role · v_CAA) v_CAA`, unit-normalised; symmetric
   construction for the aligned component.
+
+  **Note on unit-normalised CAA-aligned components.** The projection of
+  a role vector onto CAA is
+  `proj_CAA(v_role) = (v_role · v_CAA) v_CAA`, a scalar multiple of
+  `v_CAA`. Unit-normalising it yields `sign(v_role · v_CAA) × v_CAA` —
+  i.e. ±the CAA direction itself, with no role-specific information
+  beyond the sign of the cosine. Consequently, steering with the
+  `{role}_caa_component` at some coefficient `c` is mathematically
+  identical to steering with `v_CAA` at `±c`, grouped by the sign of
+  `cos(role, CAA)`. This shows up in `decomposition_eval_test.json`:
+  multiple roles with positive cosines produce *identical*
+  `mean_syc_logit` values at matched coefficient, because they are
+  literally the same steering intervention after unit-normalisation.
+  **The behavioural decomposition result in this paper is about the
+  residual, not the aligned component.** Per-role `{role}_caa_component`
+  columns in tables are kept for completeness with this disclaimer; in
+  the main text they should be folded into a single "±v_CAA" row rather
+  than listed per role.
 - **Random controls:** `torch.randn` at seed `RANDOM_SEED_BASE + i`,
   unit-normalised.
 
@@ -77,11 +95,17 @@ The condition naming and `EXPECTED_DIRECTION` dict live in each repo's
   questions × 2 A/B orderings (counterbalanced) = 600 rows per seed.
 - **Tune / test split:** 50 / 50 at base-question level
   (`TUNE_TEST_SEED = 99`); pairs stay together.
-- **Sampling seeds:** Gemma tune 5 (42, 7, 123, 456, 789), test 3
-  (42, 7, 123). Qwen tune 5 (42, 7, 123, 456, 789), test 3 (42, 7, 123).
-  Standalone-residual conditions on Gemma are single-seed (seed 42 only)
-  because they were added after the Gemma multi-seed run; on Qwen they
-  are in the 3-seed aggregate.
+- **Sampling seeds.** Tune and test splits are aggregated over *different*
+  seed counts: **tune uses 5 seeds** (42, 7, 123, 456, 789) and **test uses
+  3 seeds** (42, 7, 123). This applies to both models. Test seeds are a
+  subset of tune seeds; the extra tune seeds (456, 789) exist so that the
+  mode-across-seeds best-coefficient picker has more samples to lock on
+  before we spend compute on the held-out test split. Any reference in
+  this repo to `n_seeds=5` in a test-split aggregate would be wrong and
+  should be read as referring to tune. Standalone-residual conditions on
+  Gemma are single-seed (seed 42 only) because they were added after the
+  Gemma multi-seed run had already completed; on Qwen they are included
+  in the full 5-tune / 3-test aggregate.
 
 ## Coefficient sweep
 
@@ -96,6 +120,27 @@ stronger interventions:
 Pilot probes verified that on Qwen |coef|=5000 on a unit vector saturates
 the next-token distribution (top-1 becomes whitespace / control tokens)
 while |coef|≤200 keeps the answer distribution interpretable.
+
+### Coefficient calibration (Qwen)
+
+The 10× sweep rescale is informed by the raw-vector norm gap. From
+`vectors/steering/caa_metadata.json` on each model:
+
+- Gemma CAA raw norm (`mean(syc activations) − mean(honest activations)`
+  at layer 22, before unit-normalisation): **740.85**.
+- Qwen CAA raw norm at layer 32: **6.38**.
+
+That is a ~116× ratio, so the same absolute steering coefficient on a
+unit-normalised vector drives Qwen activations proportionally much
+further off-manifold than it does on Gemma. The 10× rescale is a
+*hand-tuned* round number — chosen so that each model's locked best
+coefficients land in the *interior* of its sweep (never at ±max) while
+the next-token distribution remains interpretable (verified per-condition
+via the degradation flag: rate near 0.5 + logit near random-mean). We
+did **not** fit a formal activation-norm-matching scheme between the two
+models; a calibrated scale that targets e.g. matched KL to the
+unsteered distribution, or matched Mahalanobis distance in activation
+space, is left to future work.
 
 ## Best-coefficient selection
 

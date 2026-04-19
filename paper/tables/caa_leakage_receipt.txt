@@ -1,0 +1,3 @@
+  saved /lambda/nfs/filesystem/sycophancy-qwen/paper/tables/caa_leakage_receipt.json
+  saved /lambda/nfs/filesystem/sycophancy-qwen/paper/tables/caa_leakage_receipt.csv
+OK: zero CAA train/eval overlap by question-text hash.

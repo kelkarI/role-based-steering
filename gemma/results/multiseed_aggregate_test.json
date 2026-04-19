@@ -3,11 +3,9 @@
   "seeds": [
     123,
     42,
-    456,
-    7,
-    789
+    7
   ],
-  "n_seeds": 5,
+  "n_seeds": 3,
   "per_condition": {
     "assistant_axis": {
       "best_coefs": [
@@ -318,5 +316,9 @@
       "n_significant": 3
     }
   },
-  "missing_seeds": 2
+  "missing_seeds": [
+    456,
+    789
+  ],
+  "n_missing_seeds": 2
 }
