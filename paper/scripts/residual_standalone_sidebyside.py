@@ -8,7 +8,7 @@ import csv
 import json
 import os
 
-GEMMA = "/lambda/nfs/filesystem/sycophancy-final/experiment-main"
+GEMMA = "/lambda/nfs/filesystem/sycophancy-gemma/experiment-main"
 QWEN  = "/lambda/nfs/filesystem/sycophancy-qwen"
 OUT   = "/lambda/nfs/filesystem"
 

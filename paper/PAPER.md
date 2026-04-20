@@ -88,7 +88,7 @@ same 24-condition protocol on both. Our contributions:
 
 Our code, aggregated results, and figures are public at
 `kelkarI/role-based-steering` (central), with the per-model pipelines
-at `kelkarI/sycophancy-final` (Gemma) and `kelkarI/sycophancy-qwen`
+at `kelkarI/sycophancy-gemma` (Gemma; formerly `kelkarI/sycophancy-final`) and `kelkarI/sycophancy-qwen`
 (Qwen).
 
 ---
@@ -567,7 +567,9 @@ matched on activation-space distance rather than raw-norm intuition;
 
 Three repositories, all public on GitHub under `kelkarI/`:
 
-- `sycophancy-final` — Gemma 2 27B pipeline + 3 residual conditions.
+- `sycophancy-gemma` — Gemma 2 27B pipeline + 3 residual conditions.
+  (Previously named `sycophancy-final`; renamed for naming parity with
+  `sycophancy-qwen`.)
 - `sycophancy-qwen` — Qwen 3 32B pipeline, multi-seed end-to-end.
 - `role-based-steering` — this paper's aggregated results + figures +
   `paper/{RESULTS, METHODS, LIMITATIONS}.md`.

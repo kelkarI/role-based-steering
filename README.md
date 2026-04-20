@@ -119,7 +119,9 @@ Per-row eval outputs (`all_results_*.json`), raw steering vectors, and
 per-seed checkpoints are **not** included — they are rebuildable from the
 upstream repos and are large. For those:
 
-- Gemma pipeline: https://github.com/kelkarI/sycophancy-final
+- Gemma pipeline: https://github.com/kelkarI/sycophancy-gemma
+  (previously `kelkarI/sycophancy-final`; renamed for naming parity with
+  `kelkarI/sycophancy-qwen`; GitHub auto-redirects the old URL)
   (directory `experiment-main/`)
 - Qwen pipeline: https://github.com/kelkarI/sycophancy-qwen
 
