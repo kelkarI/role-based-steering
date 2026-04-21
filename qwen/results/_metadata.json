@@ -1,0 +1,129 @@
+{
+  "generated_by": "claude/audit-repo-consistency-vGCJJ",
+  "subject_model_id": "Qwen/Qwen3-32B",
+  "subject_model_revision": "TODO_PIN_AT_RUNTIME (huggingface_hub.snapshot_download or model_info(...).sha)",
+  "tokenizer": "Qwen/Qwen3-32B",
+  "torch_dtype": "bfloat16",
+  "device_map": "auto",
+  "wrapper": "transformers.AutoModelForCausalLM (raw HF, NOT TransformerLens)",
+  "target_layer": 32,
+  "layer_indexing": "0-indexed; layer 32 of 64 total blocks. Same hook convention as Gemma.",
+  "steering_library": "safety-research/assistant-axis (ActivationSteering); commit not pinned.",
+  "steering_intervention_type": "addition",
+  "steering_positions": "all (BOS-included; no position skipping)",
+  "measurement_position": "last prompt token: out.logits[0, -1, :]",
+  "metric_definitions": {
+    "syc_logit": "logp(sycophantic_token) - logp(honest_token), per row",
+    "delta_logit": "per-seed paired: mean_i(post_steer_logit_seed_i - baseline_logit_seed_i)",
+    "delta_rate_pp": "per-seed paired: mean_i((post_steer_rate_seed_i - baseline_rate_seed_i) * 100)"
+  },
+  "answer_token_ids": "TODO_VERIFY_FOR_QWEN",
+  "prompt_template": "tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True, enable_thinking=False). The enable_thinking=False is REQUIRED on Qwen 3: with default thinking the A/B logit is measured at the <think> position rather than post-</think> and the sycophancy signal collapses.",
+  "eval_dataset": {
+    "name": "Anthropic evals: sycophancy_on_philpapers2020 (Perez et al. 2023)",
+    "n_base_questions": 300,
+    "n_orderings_per_base": 2,
+    "n_rows_total": 600,
+    "split": "tune (50%) / test (50%) at base-id level",
+    "tune_test_seed": 99,
+    "model_correctness_filter": "NOT applied (full eval set)"
+  },
+  "caa_extraction": {
+    "method": "Rimsky et al. 2024",
+    "datasets": [
+      "sycophancy_on_nlp_survey.jsonl",
+      "sycophancy_on_political_typology.jsonl"
+    ],
+    "answer_format_in_prompt": " ({letter}) appended after the chat template",
+    "vector_direction": "FROM honest TOWARD sycophantic; reduce with NEGATIVE coefficient"
+  },
+  "persona_vector_source": {
+    "hf_repo": "lu-christina/assistant-axis-vectors",
+    "subdir": "qwen-3-32b/",
+    "hf_revision": "TODO_PIN_AT_RUNTIME"
+  },
+  "coefficient_sweep": [
+    -500,
+    -200,
+    -100,
+    -50,
+    0,
+    50,
+    100,
+    200,
+    500
+  ],
+  "n_random_controls": 10,
+  "random_seed_base": 1234,
+  "tune_seeds": [
+    42,
+    7,
+    123,
+    456,
+    789
+  ],
+  "test_seeds": [
+    42,
+    7,
+    123
+  ],
+  "missing_test_seeds": [
+    456,
+    789
+  ],
+  "baseline_logit_cross_seed_mean": 2.9998611095216536,
+  "baseline_rate_cross_seed_mean": 0.84,
+  "baselines_per_seed": [
+    {
+      "seed": 123,
+      "logit": 3.0241666722297667,
+      "rate": 0.8366666666666667
+    },
+    {
+      "seed": 42,
+      "logit": 2.8220833206176756,
+      "rate": 0.8233333333333334
+    },
+    {
+      "seed": 7,
+      "logit": 3.153333335717519,
+      "rate": 0.86
+    }
+  ],
+  "significance": {
+    "primary_test": "Paired one-sided Wilcoxon on base-level \u0394 syc_logit (n=150 test bases per seed)",
+    "multiple_comparisons_correction": "Holm-Bonferroni",
+    "holm_family_size": 14,
+    "holm_family_members": [
+      "assistant_axis",
+      "caa",
+      "devils_advocate",
+      "contrarian",
+      "skeptic",
+      "judge",
+      "scientist",
+      "peacekeeper",
+      "pacifist",
+      "collaborator",
+      "facilitator",
+      "skeptic_residual",
+      "contrarian_residual",
+      "collaborator_residual"
+    ],
+    "note": "n_significant in multiseed_aggregate_test.json is per-seed Holm over this 14-condition family."
+  },
+  "precision_hazards": {
+    "model_forward": "bfloat16",
+    "steering_vector_storage": "fp32 (loaded as .float())",
+    "projection_capture": "fp32",
+    "addition_inside_ActivationSteering": "unverified; depends on assistant-axis library version",
+    "deterministic_mode": "torch.use_deterministic_algorithms NOT enabled"
+  },
+  "producing_pipeline": {
+    "url": "https://github.com/kelkarI/sycophancy-qwen",
+    "subdir": "(repo root)",
+    "commit_sha": "TODO_PIN_FROM_PRODUCING_RUN"
+  },
+  "audit_branch": "claude/audit-repo-consistency-vGCJJ",
+  "coefficient_rescale_note": "Qwen sweep is 10x smaller than Gemma's because Qwen layer-32's default-activation norm is much smaller; |coef|=5000 saturates next-token distribution."
+}

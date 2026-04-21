@@ -123,6 +123,28 @@ upstream repos and are large. For those:
   (directory `experiment-main/`)
 - Qwen pipeline: https://github.com/kelkarI/sycophancy-qwen
 
+## Audit history
+
+This repo was peer-reviewed for code↔results↔selection consistency. The
+review and resolution log is in [`AUDIT_NOTES.md`](AUDIT_NOTES.md). Key
+takeaways for downstream readers:
+
+- Canonical baselines: Gemma cross-seed mean baseline_logit = +1.0146,
+  Qwen = +3.000. Per-seed paired Δ is the standard reduction metric.
+  (Earlier versions of `paper/tables/`, `paper/RESULTS.md`, and
+  `cross_model/*.md` used a single-seed baseline; values shifted by
+  ~0.005 for Gemma and ~0.024 for Qwen.)
+- Holm-Bonferroni is applied per-seed across the 14-condition primary
+  family (11 main + 3 standalone residuals). The 10 random controls are
+  NOT in the family.
+- All Δ values match those in `kelkari/sycophancy-clean-results/data/`
+  modulo rounding.
+- Per-model provenance + reproducibility metadata lives in
+  `gemma/results/_metadata.json` and `qwen/results/_metadata.json`.
+  Some fields (HF model revision SHA, persona-vector revision,
+  producing-pipeline commit SHA) are marked `TODO_PIN_AT_RUNTIME` and
+  must be filled in by the next person to run the pipelines.
+
 ## Reproduction
 
 Each model's pipeline is fully reproducible from its own repo. This
